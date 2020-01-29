@@ -9,47 +9,48 @@ public class Mission3 {
 		// TODO Auto-generated method stub
 		File f = new File("C:\\Users\\carls\\Documents\\AdventOfCode");
 		Scanner sc = new Scanner(f);
-		int x = 0;
-		int y = 0;
+
 		StringBuilder path1 = new StringBuilder(sc.nextLine());
 		StringBuilder path2 = new StringBuilder(sc.nextLine());
+		sc.close();
 		
-		ArrayList<Integer> path1X = new ArrayList<Integer>();
-		ArrayList<Integer> path1Y = new ArrayList<Integer>();
-		ArrayList<Integer> path2X = new ArrayList<Integer>();
-		ArrayList<Integer> path2Y = new ArrayList<Integer>();
+		ArrayList<Integer> path1x = new ArrayList<Integer>();
+		ArrayList<Integer> path1y = new ArrayList<Integer>();
+		path1x.add(0);
+		path1y.add(0);
+		ArrayList<Integer> path2x = new ArrayList<Integer>();
+		ArrayList<Integer> path2y = new ArrayList<Integer>();
+		path2x.add(0);
+		path2y.add(0);
 		
-		
-		for(int i=0;i<path1.length();i++) {
-			if(path1.charAt(i)=='R') {
-				for(int j=x;j<=Integer.parseInt(path1.substring(i+1,path1.indexOf(",", i)))+x;j++) {
-					path1X.add(j);
-					path1Y.add(y);
-					x=Integer.parseInt(path1.substring(i+1,path1.indexOf(",", i)))+x;
+	}
+	
+	public static Point createCoordinates(StringBuilder path, ArrayList<Integer> x, ArrayList<Integer> y){
+		for(int i=0;i<path.length();i++) {
+			if(path.charAt(i)=='R') {
+				for(int j=x.get(x.size()-1);j<=x.get(x.size()-1)+Integer.parseInt(path.substring(i+1,path.indexOf(",", i)));j++) {
+					x.add(j);
+					y.add(y.get(y.size()-1));
 				}
-			} else if(path1.charAt(i)=='L') {
-				for(int j=x;j<=Integer.parseInt(path1.substring(i+1,path1.indexOf(",", i)))-x;j++) {
-					path1X.add(-j);
-					path1Y.add(y);
-					x=x+Integer.parseInt(path1.substring(i+1,path1.indexOf(",", i)));
+			} else if(path.charAt(i)=='L') {
+				for(int j=x.get(x.size()-1);j>=x.get(x.size()-1)-Integer.parseInt(path.substring(i+1, path.indexOf(",", i)));j--) {
+					x.add(j);
+					y.add(y.get(y.size()-1));
 				}	
-			} else if(path1.charAt(i)=='U') {
-				for(int j=y;j<=Integer.parseInt(path1.substring(i+1,path1.indexOf(",", i)))+y;j++) {
-					path1Y.add(j);
-					path1X.add(x);
-					y=y+Integer.parseInt(path1.substring(i+1,path1.indexOf(",", i)));
+			} else if(path.charAt(i)=='U') {
+				for(int j=y.get(y.size()-1);j<=y.get(y.size()-1)+Integer.parseInt(path.substring(i+1, path.indexOf(",", i)));j++) {
+					y.add(j);
+					x.add(x.get(x.size()-1));
 				}	
-			} else if(path1.charAt(i)=='D') {
-				for(int j=x;j<=Integer.parseInt(path1.substring(i+1,path1.indexOf(",", i)))-y;j++) {
-					path1Y.add(-j);
-					path1X.add(y);
-					y=y-Integer.parseInt(path1.substring(i+1,path1.indexOf(",", i)));
+			} else if(path.charAt(i)=='D') {
+				for(int j=y.get(y.size()-1);j>=y.get(y.size()-1)+Integer.parseInt(path.substring(i+1, path.indexOf(",", i)));j++) {
+					y.add(j);
+					x.add(x.get(x.size()-1));
 					//MIETI MATEMATIIKKAA
 				}	
 			}
 		}
-		
-		sc.close();
+		return new Point(x, y);
 	}
 
 }

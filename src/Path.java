@@ -6,7 +6,7 @@ public class Path{
 	private int MIN;
 	private ArrayList<ArrayList<String>> map;
 	
-	Path(StringBuffer a){
+	Path(int x, int y1, x1, int y1{
 		for(int i=0;i<a.length();i++) {
 			this.com.add(a.substring(i, a.indexOf(",", i)));
 			i=a.indexOf(",",i);
