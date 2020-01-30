@@ -7,12 +7,15 @@ public class Mission3 {
 
 	public static void main(String[] args) throws FileNotFoundException {
 		// TODO Auto-generated method stub
-		File f = new File("C:\\Users\\carls\\Documents\\AdventOfCode");
+		File f = new File("C:\\Users\\carls\\Documents\\AdventOfCode\\wires.txt");
 		Scanner sc = new Scanner(f);
 
 		StringBuilder path1 = new StringBuilder(sc.nextLine());
 		StringBuilder path2 = new StringBuilder(sc.nextLine());
 		sc.close();
+		
+		System.out.println(path1);
+		System.out.println(path2);
 		
 		ArrayList<Integer> path1x = new ArrayList<Integer>();
 		ArrayList<Integer> path1y = new ArrayList<Integer>();
@@ -22,6 +25,16 @@ public class Mission3 {
 		ArrayList<Integer> path2y = new ArrayList<Integer>();
 		path2x.add(0);
 		path2y.add(0);
+		System.out.println("ehkä");
+		Point one1 = createCoordinates(path1,path1x,path1y);
+		Point two1 = createCoordinates(path2,path2x,path2y);
+		System.out.println("toimi");
+		for(int i=0;i<Math.max(path1.length(), path2.length());i++) {
+			if(one1.returnX(i)==two1.returnX(i)&&one1.returnY(i)==two1.returnY(i)) {
+				System.out.println("joo");
+			}
+		}
+		
 		
 	}
 	

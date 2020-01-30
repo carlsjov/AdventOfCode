@@ -1,7 +1,9 @@
+import java.util.ArrayList;
 
 public class Point {
-	private int y;
 	private ArrayList<Integer> x;
+	private ArrayList<Integer> y;
+
 	/* 
 	 * #Creates a point that holds an list of points that it crosses.
 	 * 
@@ -10,18 +12,18 @@ public class Point {
 	 * x and y are the finishing coordinates.
 	 */
 	
-	Point(int x, int y, int a, int b){
-		this.y = y;
-		for(int i=a; i<=x;i++) {
-			this.x.add(a);
+	Point(ArrayList<Integer> x, ArrayList<Integer> y){
+		for(int i=0;i<x.size();i++) {
+			this.x.add(x.get(i));
+			this.y.add(y.get(i));
 		}
 	}
 	
-	public int returnX() {
-		return x;
+	public int returnX(int a) {
+		return this.x.get(a);
 	}
 	
-	public int returnY() {
-		return y;
+	public int returnY(int a) {
+		return this.y.get(a);
 	}
 }
