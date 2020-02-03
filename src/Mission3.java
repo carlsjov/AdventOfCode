@@ -12,59 +12,20 @@ public class Mission3 {
 
 		StringBuilder path1 = new StringBuilder(sc.nextLine());
 		StringBuilder path2 = new StringBuilder(sc.nextLine());
+
 		System.out.println(path1.length());
 		System.out.println(path2.length());
 		sc.close();
 
-		ArrayList<String> coordinates = new ArrayList<String>();
-		
+		ArrayList<String> coordinates1 = makeCoordinates(path1);
+		ArrayList<String> coordinates2 = makeCoordinates(path2);
+
 		int x = 0;
 		int y = 0;
 		
 		int x1=0;
 		int y1=0;
 		
-		for(int i=0;i<path1.length();i++) {
-			if(path1.charAt(i)=='R') {
-				for(int k=0;k<Integer.parseInt(path1.substring(i+1,path1.indexOf(",", i+1)));k++) {
-					x++;
-				}
-			} else if(path1.charAt(i)=='L') {
-				for(int k=0;k<Integer.parseInt(path1.substring(i+1,path1.indexOf(",", i+1)));k++) {
-					x--;
-				}
-			} else if(path1.charAt(i)=='U') {
-				for(int k=0;k<Integer.parseInt(path1.substring(i+1,path1.indexOf(",", i+1)));k++) {
-					y++;
-				}
-			} else if(path1.charAt(i)=='D') {
-				for(int k=0;k<Integer.parseInt(path1.substring(i+1,path1.indexOf(",", i+1)));k++) {
-					y--;
-				}
-			}
-			for(int j=0;j<path2.length();j++) {
-				if(path2.charAt(j)=='R') {
-					for(int k=0;k<Integer.parseInt(path2.substring(j+1,path2.indexOf(",", j)));k++) {
-						x1++;
-						//j=path2.indexOf(",",j);
-					}
-				} else if(path2.charAt(j)=='L') {
-					for(int k=0;k<Integer.parseInt(path2.substring(j+1,path2.indexOf(",", j)));k++) {
-						x1--;
-						//j=path2.indexOf(",",j);
-					}
-				} else if(path2.charAt(j)=='U') {
-					for(int k=0;k<Integer.parseInt(path2.substring(j+1,path2.indexOf(",", j)));k++) {
-						y1++;
-						//j=path2.indexOf(",",j);
-					}
-				} else if(path2.charAt(j)=='D') {
-					for(int k=0;k<Integer.parseInt(path2.substring(j+1,path2.indexOf(",", j)));k++) {
-						y1--;
-						//j=path2.indexOf(",",j);
-					}
-				}
-			}
 			if(x==x1 && y==y1) {
 				coordinates.add("X"+String.valueOf(x)+"Y"+String.valueOf(y));
 				System.out.println(x+" "+y);
@@ -105,6 +66,29 @@ public class Mission3 {
 			}
 		}
 		return new Point(x, y);
+	}
+	
+	public static ArrayList<String> makeCoordinates(StringBuilder path){
+		ArrayList<String> a = new ArrayList<String>();
+		for(int i=0;i<path.length();i++) {
+			if(path.charAt(i)=='L') {
+				a.add(path.substring(i,path.indexOf(",", i)));
+				i=path.indexOf(",", i);
+			}
+			if(path.charAt(i)=='R') {
+				a.add(path.substring(i,path.indexOf(",", i)));
+				i=path.indexOf(",", i);
+			}
+			if(path.charAt(i)=='U') {
+				a.add(path.substring(i,path.indexOf(",", i)));
+				i=path.indexOf(",", i);
+			}
+			if(path.charAt(i)=='D') {
+				a.add(path.substring(i,path.indexOf(",", i)));
+				i=path.indexOf(",", i);
+			}
+		}
+		return a;
 	}
 
 }
