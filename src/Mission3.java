@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Mission3 {
@@ -19,65 +20,183 @@ public class Mission3 {
 
 		ArrayList<String> coordinates1 = makeCoordinates(path1);
 		ArrayList<String> coordinates2 = makeCoordinates(path2);
-
-		int x = 0;
-		int y = 0;
+		ArrayList<String> cross = new ArrayList<String>();
 		
+		int x=0;
+		int y=0;
 		int x1=0;
 		int y1=0;
+
 		
-			if(x==x1 && y==y1) {
-				coordinates.add("X"+String.valueOf(x)+"Y"+String.valueOf(y));
-				System.out.println(x+" "+y);
-			} else {
-				x1=0;
-				y1=0;
+		for(int i=0;i<coordinates1.size();i++){
+			if(coordinates1.get(i).charAt(0)=='R') {
+				for(int j=0;j<Integer.parseInt(coordinates1.get(i).substring(1,coordinates1.get(i).length()));j++) {
+					for(int h=0;h<coordinates2.size();h++){
+						if(coordinates2.get(h).charAt(0)=='R') {
+							for(int k=0;k<Integer.parseInt(coordinates2.get(h).substring(1,coordinates2.get(h).length()));k++) {
+								x1++;
+								testIfCrosses(x,y,x1,y1,cross);
+							}
+						}
+						else if(coordinates2.get(h).charAt(0)=='L') {
+							for(int k=0;k<Integer.parseInt(coordinates2.get(h).substring(1,coordinates2.get(h).length()));k++) {
+								x1--;
+								testIfCrosses(x,y,x1,y1,cross);
+							}
+						}
+						else if(coordinates2.get(h).charAt(0)=='U') {
+							for(int k=0;k<Integer.parseInt(coordinates2.get(h).substring(1,coordinates2.get(h).length()));k++) {
+								y1++;
+								testIfCrosses(x,y,x1,y1,cross);
+							}
+						}
+						else if(coordinates2.get(h).charAt(0)=='D') {
+							for(int k=0;k<Integer.parseInt(coordinates2.get(h).substring(1,coordinates2.get(h).length()));k++) {
+								y1--;
+								testIfCrosses(x,y,x1,y1,cross);
+							}
+						}
+					}
+					x++;
+					System.out.println("x:"+x+" y:"+y+" x1:"+x1+" y1:"+y1);
+					x1=0;
+					y1=0;
+				}
 			}
-			System.out.println("toimi");
+			if(coordinates1.get(i).charAt(0)=='L') {
+				for(int j=0;j<Integer.parseInt(coordinates1.get(i).substring(1,coordinates1.get(i).length()));j++) {
+					for(int h=0;h<coordinates2.size();h++){
+						if(coordinates2.get(h).charAt(0)=='R') {
+							for(int k=0;k<Integer.parseInt(coordinates2.get(h).substring(1,coordinates2.get(h).length()));k++) {
+								x1++;
+								testIfCrosses(x,y,x1,y1,cross);
+							}
+						}
+						else if(coordinates2.get(h).charAt(0)=='L') {
+							for(int k=0;k<Integer.parseInt(coordinates2.get(h).substring(1,coordinates2.get(h).length()));k++) {
+								x1--;
+								testIfCrosses(x,y,x1,y1,cross);
+							}
+						}
+						else if(coordinates2.get(h).charAt(0)=='U') {
+							for(int k=0;k<Integer.parseInt(coordinates2.get(h).substring(1,coordinates2.get(h).length()));k++) {
+								y1++;
+								testIfCrosses(x,y,x1,y1,cross);
+							}
+						}
+						else if(coordinates2.get(h).charAt(0)=='D') {
+							for(int k=0;k<Integer.parseInt(coordinates2.get(h).substring(1,coordinates2.get(h).length()));k++) {
+								y1--;
+								testIfCrosses(x,y,x1,y1,cross);
+							}
+						}
+					}
+					x--;
+					System.out.println("x:"+x+" y:"+y+" x1:"+x1+" y1:"+y1);
+					x1=0;
+					y1=0;
+				}
+			}
+			if(coordinates1.get(i).charAt(0)=='U') {
+				for(int j=0;j<Integer.parseInt(coordinates1.get(i).substring(1,coordinates1.get(i).length()));j++) {
+					for(int h=0;h<coordinates2.size();h++){
+						if(coordinates2.get(h).charAt(0)=='R') {
+							for(int k=0;k<Integer.parseInt(coordinates2.get(h).substring(1,coordinates2.get(h).length()));k++) {
+								x1++;
+								testIfCrosses(x,y,x1,y1,cross);
+							}
+						}
+						else if(coordinates2.get(h).charAt(0)=='L') {
+							for(int k=0;k<Integer.parseInt(coordinates2.get(h).substring(1,coordinates2.get(h).length()));k++) {
+								x1--;
+								testIfCrosses(x,y,x1,y1,cross);
+							}
+						}
+						else if(coordinates2.get(h).charAt(0)=='U') {
+							for(int k=0;k<Integer.parseInt(coordinates2.get(h).substring(1,coordinates2.get(h).length()));k++) {
+								y1++;
+								testIfCrosses(x,y,x1,y1,cross);
+							}
+						}
+						else if(coordinates2.get(h).charAt(0)=='D') {
+							for(int k=0;k<Integer.parseInt(coordinates2.get(h).substring(1,coordinates2.get(h).length()));k++) {
+								y1--;
+								testIfCrosses(x,y,x1,y1,cross);
+							}
+						}
+					}
+					y++;
+					System.out.println("x:"+x+" y:"+y+" x1:"+x1+" y1:"+y1);
+					x1=0;
+					y1=0;
+				}
+			}
+			if(coordinates1.get(i).charAt(0)=='D') {
+				for(int j=0;j<Integer.parseInt(coordinates1.get(i).substring(1,coordinates1.get(i).length()));j++) {
+					for(int h=0;h<coordinates2.size();h++){
+						if(coordinates2.get(h).charAt(0)=='R') {
+							for(int k=0;k<Integer.parseInt(coordinates2.get(h).substring(1,coordinates2.get(h).length()));k++) {
+								x1++;
+								testIfCrosses(x,y,x1,y1,cross);
+							}
+						}
+						if(coordinates2.get(h).charAt(0)=='L') {
+							for(int k=0;k<Integer.parseInt(coordinates2.get(h).substring(1,coordinates2.get(h).length()));k++) {
+								x1--;
+								testIfCrosses(x,y,x1,y1,cross);
+							}
+						}
+						if(coordinates2.get(h).charAt(0)=='U') {
+							for(int k=0;k<Integer.parseInt(coordinates2.get(h).substring(1,coordinates2.get(h).length()));k++) {
+								y1++;
+								testIfCrosses(x,y,x1,y1,cross);
+							}
+						}
+						if(coordinates2.get(h).charAt(0)=='D') {
+							for(int k=0;k<Integer.parseInt(coordinates2.get(h).substring(1,coordinates2.get(h).length()));k++) {
+								y1--;
+								testIfCrosses(x,y,x1,y1,cross);
+							}
+						}
+					}
+					y--;
+					System.out.println("x:"+x+" y:"+y+" x1:"+x1+" y1:"+y1);
+					x1=0;
+					y1=0;
+					
+				}
+			}
 		}
+		System.out.println("toimii");
+		System.out.println(cross.toString());
+		System.out.println(measureLength(cross));
 	}
 		
-		
-	
-	
-	public static Point createCoordinates(StringBuilder path, ArrayList<Integer> x, ArrayList<Integer> y){
-		for(int i=0;i<path.length();i++) {
-			if(path.charAt(i)=='R') {
-				for(int j=x.get(x.size()-1)+1;j<=x.get(x.size()-1)+Integer.parseInt(path.substring(i+1,path.indexOf(",", i)));j++) {
-					x.add(j);
-					y.add(y.get(y.size()-1));
-				}
-			} else if(path.charAt(i)=='L') {
-				for(int j=x.get(x.size()-1)+1;j>=x.get(x.size()-1)-Integer.parseInt(path.substring(i+1, path.indexOf(",", i)));j--) {
-					x.add(j);
-					y.add(y.get(y.size()-1));
-				}	
-			} else if(path.charAt(i)=='U') {
-				for(int j=y.get(y.size()-1)+1;j<=y.get(y.size()-1)+Integer.parseInt(path.substring(i+1, path.indexOf(",", i)));j++) {
-					y.add(j);
-					x.add(x.get(x.size()-1));
-				}	
-			} else if(path.charAt(i)=='D') {
-				for(int j=y.get(y.size()-1)+1;j>=y.get(y.size()-1)+Integer.parseInt(path.substring(i+1, path.indexOf(",", i)));j++) {
-					y.add(j);
-					x.add(x.get(x.size()-1));
-					//MIETI MATEMATIIKKAA
-				}	
-			}
+	public static void testIfCrosses(int x, int y, int x1, int y1, ArrayList<String> cross) {
+		if(x==x1 && y==y1) {
+			cross.add("X"+String.valueOf(x)+"Y"+String.valueOf(y));
+			System.out.println(x+" "+y);
 		}
-		return new Point(x, y);
 	}
 	
 	public static ArrayList<String> makeCoordinates(StringBuilder path){
 		ArrayList<String> a = new ArrayList<String>();
 		for(int i=0;i<path.length();i++) {
 			if(path.charAt(i)=='L') {
-				a.add(path.substring(i,path.indexOf(",", i)));
-				i=path.indexOf(",", i);
+				if(path.indexOf(",",i)!=-1) {
+					a.add(path.substring(i,path.indexOf(",", i)));
+					i=path.indexOf(",", i);
+				} else {
+					a.add(path.substring(i));
+				}
 			}
 			if(path.charAt(i)=='R') {
-				a.add(path.substring(i,path.indexOf(",", i)));
-				i=path.indexOf(",", i);
+				if(path.indexOf(",",i)!=-1) {
+					a.add(path.substring(i,path.indexOf(",", i)));
+					i=path.indexOf(",", i);
+				} else {
+					a.add(path.substring(i));
+				}
 			}
 			if(path.charAt(i)=='U') {
 				a.add(path.substring(i,path.indexOf(",", i)));
@@ -90,5 +209,17 @@ public class Mission3 {
 		}
 		return a;
 	}
-
+	
+	public static int measureLength(ArrayList<String> c) {
+	  	int x = Integer.parseInt(c.get(0).substring(1,c.get(0).indexOf("Y")));
+	  	int y = Integer.parseInt(c.get(0).substring(c.get(0).indexOf("Y")+1,c.get(0).length()));
+		int measure = x+y;		
+		
+		for(int i=0;i<c.size();i++){
+			x = Integer.parseInt(c.get(i).substring(1,c.get(i).indexOf("Y")));
+			y = Integer.parseInt(c.get(i).substring(c.get(i).indexOf("Y")+1,c.get(i).length()));
+			Math.min(measure,x+y);
+		}
+		return measure;
+	}
 }
