@@ -1,6 +1,7 @@
 input = open(r"input.txt","r")
 b = input.readlines()
 sum = 0
+
 def laskeRivi(txt):
     temp = ""
     for i in txt:
